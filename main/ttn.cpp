@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <Preferences.h>
 #include <SPI.h>
 #include <hal/hal.h>
-#include "..\lib\basicmac\src\lmic\lmic.h"
+#include "../lib/basicmac/src/lmic/lmic.h"
 
 #include <vector>
 
@@ -312,7 +312,7 @@ void ttn_join(void) {
 
   // set sub band for AU915
   // https://github.com/TheThingsNetwork/gateway-conf/blob/master/AU-global_conf.json
-  LMIC_selectSubBand(1);
+  // LMIC_selectSubBand(1);
 
 #endif
 

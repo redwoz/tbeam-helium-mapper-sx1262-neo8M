@@ -34,12 +34,12 @@
 // then select the right region at runtime using os_getRegion() and/or
 // LMIC_reset_ex().
 #if !defined(CFG_eu868) && !defined(CFG_us915)
-#define CFG_eu868 1
+//#define CFG_eu868 1
 //#define CFG_us915 1
 //#define CFG_as923 1
 //#define CFG_il915 1
 //#define CFG_kr920 1
-//#define CFG_au915 1
+#define CFG_au915 1
 #endif // !defined(CFG_eu868) && !defined(CFG_us915)
 
 #define CFG_autojoin

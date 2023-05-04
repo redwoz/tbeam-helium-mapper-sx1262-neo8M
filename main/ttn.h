@@ -1,7 +1,7 @@
 #pragma once
 #include <Arduino.h>
-#include "..\lib\basicmac\src\lmic\lmic.h"
-#include "..\lib\basicmac\src\hal\hal.h"
+#include "../lib/basicmac/src/lmic/lmic.h"
+#include "../lib/basicmac/src/hal/hal.h"
 
 
 

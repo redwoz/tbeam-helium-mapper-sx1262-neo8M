@@ -38,7 +38,7 @@
 #include <Wire.h>
 #include "driver/adc.h"
 #include <axp20x.h>
-#include "..\lib\basicmac\src\lmic\lmic.h"
+#include "../lib/basicmac/src/lmic/lmic.h"
 #include <Timezone.h>
 #include <TimeLib.h>
 #include "configuration.h"
