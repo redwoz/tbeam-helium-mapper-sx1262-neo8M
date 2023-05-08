@@ -1122,11 +1122,9 @@ static void setBcnRxParams_dyn (void) {
 
 
 static void initJoinLoop (void) {
-    initDefaultChannels();
     if( REG_IS_FIX() ) {
 #ifdef REG_FIX
-        LMIC.refChnl = 0;
-        LMIC.txChnl = LMIC.fix.hoplist[LMIC.refChnl];
+        nextTx(os_getTime()); //LMIC.fix.hoplist[LMIC.refChnl];
         setDrJoin(DRCHG_SET, REGION.joinDr);
 #endif
     } else {
@@ -1167,7 +1165,7 @@ nextblock:
             }
         }
         setDrJoin(DRCHG_SET, REGION.joinDr);
-        LMIC.txChnl = LMIC.fix.hoplist[LMIC.refChnl];
+        nextTx(os_getTime()); //LMIC.fix.hoplist[LMIC.refChnl];
 done:
         LMIC.opmode &= ~OP_NEXTCHNL;
         delay = rndDelay(32);
@@ -2859,13 +2857,13 @@ static bit_t processDnData (void) {
                 }
                 if (lowerDR(LMIC.datarate, 1) != LMIC.datarate) {
                     setDrTxpow(DRCHG_NOADRACK, lowerDR(LMIC.datarate, 1), KEEP_TXPOWADJ);
-                } else if (REG_IS_FIX()
-#ifdef REG_FIX
-                        && enableAllChannels_fix()
-#endif
-                        ) {
-                    // some channels were disabled
-                    // NOTE: we now enter a network/device state mismatch!!
+//                 } else if (REG_IS_FIX()
+// #ifdef REG_FIX
+//                         && enableAllChannels_fix()
+// #endif
+//                         ) {
+//                     // some channels were disabled
+//                     // NOTE: we now enter a network/device state mismatch!!
                 } else {
                     // nothing we can do anymore
                     LMIC.opmode |= /* XXX OP_REJOIN| */ OP_LINKDEAD;
@@ -3279,6 +3277,7 @@ void LMIC_reset_ex (u1_t regionCode) {
 
 void LMIC_reset (void) {
     LMIC_reset_ex(os_getRegion());
+    initDefaultChannels();
 }
 
 void LMIC_init (void) {
