@@ -121,11 +121,12 @@ void os_radio (u1_t mode) {
                              getSf(LMIC.rps) - SF7 + 7, 125 << (getBw(LMIC.rps) - BW125),
                              getCr(LMIC.rps) - CR_4_5 + 5, getNocrc(LMIC.rps), getIh(LMIC.rps));
             }
-            debug_printf_continue(",fcnt=%lu,freq=%.1F,pow=%d,len=%d%s]: %.80h\r\n",
+            debug_printf_continue(",fcnt=%lu,freq=%.1F,pow=%d,len=%d%s,txch=%d]: %.80h\r\n",
                          (LMIC.seqnoUp ? LMIC.seqnoUp - 1 : 0),
                          LMIC.freq, 6,
                          LMIC.txpow, LMIC.dataLen,
                          (LMIC.pendTxPort != 0 && (LMIC.frame[OFF_DAT_FCT] & FCT_ADRARQ)) ? ",ADRARQ" : "",
+                         LMIC.txChnl,
                          LMIC.frame, LMIC.dataLen);
 #endif
             // transmit frame now (wait for completion interrupt)
