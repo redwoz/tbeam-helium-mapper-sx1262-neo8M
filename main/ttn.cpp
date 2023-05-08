@@ -310,9 +310,17 @@ void ttn_join(void) {
 
 #elif defined(CFG_au915)
 
-  // set sub band for AU915
-  // https://github.com/TheThingsNetwork/gateway-conf/blob/master/AU-global_conf.json
-  // LMIC_selectSubBand(1);
+  // https://github.com/thomaslaurenson/Dragino_LoRaShield_Node_AU915#arduino-sketch-for-dragino-lorashield
+
+  // First, disable channels 0-7
+  for (int channel = 0; channel < 8; ++channel) {
+    LMIC_disableChannel(channel);
+  }
+  // Now, disable channels 16-72 (is there 72 ??)
+  for (int channel = 16; channel < 72; ++channel) {
+    LMIC_disableChannel(channel);
+  }
+  // This means only channels 8-15 are up
 
 #endif
 
